@@ -1,0 +1,11 @@
+<litepal>
+    <dbname value='YangYang_Weather'></dbname>
+    <version value='1'></version>
+
+    <list>
+        <mapping class="top.qidayang.www.yangyangweather.db.City"></mapping>
+        <mapping class="top.qidayang.www.yangyangweather.db.Country"></mapping>
+        <mapping class="top.qidayang.www.yangyangweather.db.Province"></mapping>
+
+    </list>
+</litepal>
