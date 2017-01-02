@@ -1,6 +1,7 @@
 package top.qidayang.www.yangyangweather.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import top.qidayang.www.yangyangweather.R;
+import top.qidayang.www.yangyangweather.WeatherActitvity;
 import top.qidayang.www.yangyangweather.db.City;
 import top.qidayang.www.yangyangweather.db.Country;
 import top.qidayang.www.yangyangweather.db.Province;
@@ -84,6 +86,14 @@ public class ChooseAreaFragment extends Fragment {
 
                     selectedCity = cityList.get(position);
                     queryCountries();
+
+                }else  if (currentLevel==LEVEL_COUNTRY){
+
+                    String weatherId=countryList.get(position).getWeatherId();
+                    Intent intent=new Intent(getActivity(), WeatherActitvity.class);
+                    intent.putExtra("weather_id",weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
 
                 }
             }
