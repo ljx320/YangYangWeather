@@ -1,5 +1,6 @@
 package top.qidayang.www.yangyangweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -29,6 +30,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 import top.qidayang.www.yangyangweather.gson.Forecast;
 import top.qidayang.www.yangyangweather.gson.Weather;
+import top.qidayang.www.yangyangweather.service.AutoUpdateService;
 import top.qidayang.www.yangyangweather.util.HttpUtil;
 import top.qidayang.www.yangyangweather.util.Utility;
 
@@ -186,6 +188,9 @@ public class WeatherActitvity extends AppCompatActivity {
     }
 
     public void showWeatherInfo(Weather weather) {
+
+        Intent intent=new Intent(this, AutoUpdateService.class);
+        startService(intent);
 
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
