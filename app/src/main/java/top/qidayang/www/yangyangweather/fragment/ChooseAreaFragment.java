@@ -24,6 +24,7 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
+import top.qidayang.www.yangyangweather.MainActivity;
 import top.qidayang.www.yangyangweather.R;
 import top.qidayang.www.yangyangweather.WeatherActitvity;
 import top.qidayang.www.yangyangweather.db.City;
@@ -88,12 +89,24 @@ public class ChooseAreaFragment extends Fragment {
                     queryCountries();
 
                 }else  if (currentLevel==LEVEL_COUNTRY){
-
                     String weatherId=countryList.get(position).getWeatherId();
-                    Intent intent=new Intent(getActivity(), WeatherActitvity.class);
-                    intent.putExtra("weather_id",weatherId);
-                    startActivity(intent);
-                    getActivity().finish();
+                    if (getActivity() instanceof MainActivity){
+
+
+                        Intent intent=new Intent(getActivity(), WeatherActitvity.class);
+                        intent.putExtra("weather_id",weatherId);
+                        startActivity(intent);
+                    }
+                    else  if (getActivity()  instanceof WeatherActitvity){
+
+                        WeatherActitvity actitvity=(WeatherActitvity)getActivity();
+                        actitvity.drawerLayout.closeDrawers();
+                        actitvity.swipeRefreshLayout.setRefreshing(true);
+                        actitvity.requestWeather(weatherId);
+
+                    }
+
+
 
                 }
             }
